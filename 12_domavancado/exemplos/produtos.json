@@ -1,0 +1,16 @@
+[
+  {
+    "codigo": 101,
+    "nome": "Mouse",
+    "preco": 50,
+    "quantidade": 10,
+    "categoria": "Periférico"
+  },
+  {
+    "codigo": 102,
+    "nome": "Teclado",
+    "preco": 80,
+    "quantidade": 5,
+    "categoria": "Periférico"
+  }
+]

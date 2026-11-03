@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="01_valores.html">Valores</a>
+        <a href="02_captura.html">Captura</a>
+        <a href="02_submit.html">Submite</a>
+        <a href="03_lista.html">Lista 1</a>
+        <a href="04_lista.html">Lista valida</a>
+        <a href="05_crud.html">Crud</a>
+        <a href="06_storage.html">Storage</a>
+
+    </nav>
+
+    <input id="produto" type="text">
+
+    <button type="button" id="adicionar">
+        Adicionar
+    </button>
+
+    <ul id="lista"></ul>
+
+    <script>
+        const campo = document.querySelector("#produto");
+
+        const botao = document.querySelector("#adicionar");
+        const lista = document.querySelector("#lista");
+
+        botao.addEventListener("click", () => {
+            const produto = campo.value.trim();
+
+
+            if (!produto) {
+                return;
+            }
+
+            const item = document.createElement("li");
+            item.textContent = produto;
+            lista.append(item);
+            campo.value = "";
+
+
+
+
+
+
+
+        })
+    </script>
+
+</body>
+
+</html>

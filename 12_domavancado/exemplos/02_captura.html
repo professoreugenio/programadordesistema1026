@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 2 - Captura de Dados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container-captura">
+
+        <nav>
+            <a href="01_valores.html">Valores</a>
+            <a href="02_captura.html">Captura</a>
+            <a href="02_submit.html">Submite</a>
+            <a href="03_lista.html">Lista 1</a>
+            <a href="04_lista.html">Lista valida</a>
+            <a href="05_crud.html">Crud</a>
+            <a href="06_storage.html">Storage</a>
+
+        </nav>
+
+        <h2>Captura de Dados</h2>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <label for="idade">Idade</label>
+        <input type="number" id="idade" min="0" placeholder="Digite sua idade">
+        <button type="button" id="mostrar">
+            Mostrar Dados
+        </button>
+        <div id="resultado" aria-live="polite"></div>
+    </main>
+    <script>
+        // 1. SELECIONAR OS ELEMENTOS
+        const campoNome = document.querySelector("#nome");
+        const campoIdade = document.querySelector("#idade");
+        const botao = document.querySelector("#mostrar");
+        const resultado = document.querySelector("#resultado");
+        // 2. EVENTO DE CLIQUE
+        botao.addEventListener("click", () => {
+            // 3. CAPTURAR OS VALORES
+            const nome = campoNome.value.trim();
+            const idade = campoIdade.value;
+            // 4. VALIDAR OS CAMPOS
+            if (nome === "" || idade === "") {
+                resultado.textContent =
+                    "Preencha o nome e a idade!";
+                return;
+            }
+            // 5. APRESENTAR OS DADOS
+            resultado.textContent =
+                "Nome: " + nome +
+                " | Idade: " + idade + " anos";
+        });
+    </script>
+</body>
+
+</html>

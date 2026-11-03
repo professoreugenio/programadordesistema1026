@@ -1,0 +1,269 @@
+7. Armazenamento com localStorage e JSON
+💾 O que é localStorage?
+localStorage é um recurso da Web Storage API que permite guardar pares de chave e valor no navegador.
+
+Os valores são armazenados como strings e associados à origem da página.
+
+O armazenamento é adequado a pequenos projetos didáticos, preferências e informações não sensíveis, mas não substitui um banco de dados de servidor.
+
+📥 Salvando informações
+localStorage.setItem("tema", "escuro");
+📤 Recuperando informações
+const tema = localStorage.getItem("tema");
+console.log(tema);
+🗑️ Removendo uma informação
+localStorage.removeItem("tema");
+🔄 Convertendo arrays em JSON
+JSON significa JavaScript Object Notation, um formato textual utilizado para representar dados estruturados.
+
+Utilizaremos JSON.stringify() para transformar o array em texto e JSON.parse() para recuperar os dados.
+
+const produtos = [
+    { codigo: 101, nome: "Mouse" }
+];
+
+localStorage.setItem(
+    "produtos",
+    JSON.stringify(produtos)
+);
+📚 Recuperando o array
+const texto = localStorage.getItem("produtos");
+
+const lista = texto === null
+    ? []
+    : JSON.parse(texto);
+
+console.log(lista);
+🚨 Tratando possíveis erros
+Operações com localStorage podem falhar por restrições de acesso, armazenamento ou dados inválidos.
+
+Por isso, utilizaremos try...catch.
+
+try {
+    const texto = localStorage.getItem("produtos");
+
+    const lista = texto === null
+        ? []
+        : JSON.parse(texto);
+
+    console.log(lista);
+} catch (erro) {
+    console.error("Falha ao recuperar dados:", erro.message);
+}
+ATIVIDADE PRÁTICA 6 — Salvando Dados
+Objetivo: salvar e recuperar um array de objetos.
+
+Conceitos: localStorage, JSON.stringify e JSON.parse.
+
+Tempo: 15 minutos.
+
+Arquivo: atividades/06_storage.html.
+
+Crie um array com dois produtos.
+Salve o array no localStorage.
+Atualize a página.
+Recupere o conteúdo salvo.
+Apresente o resultado no console.
+Confira os dados na aba Application ou Storage.
+Resultado esperado: os objetos continuam disponíveis após atualizar a página na mesma origem.
+
+Arquivo Json
+[
+    {
+        "codigo": 101,
+        "nome": "Mouse",
+        "preco": 50,
+        "quantidade": 10,
+        "categoria": "Periférico"
+    },
+    {
+        "codigo": 102,
+        "nome": "Teclado",
+        "preco": 80,
+        "quantidade": 5,
+        "categoria": "Periférico"
+    }
+]
+
+Erro comum: tentar salvar diretamente um array de objetos sem utilizar JSON.stringify().
+
+Página html:
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Produtos</title>
+    <link rel="stylesheet" href="stylecrud.css">
+</head>
+<body>
+    <nav>
+        <a href="01_valores.html">Valores</a>
+        <a href="02_captura.html">Captura</a>
+        <a href="02_submit.html">Submite</a>
+        <a href="03_lista.html">Lista 1</a>
+        <a href="04_lista.html">Lista valida</a>
+        <a href="05_crud.html">Crud</a>
+        <a href="06_storage.html">Storage</a>
+    </nav>
+    <main class="container">
+        <h1>Cadastro de Produtos</h1>
+        <section class="formulario">
+            <h2>Dados do Produto</h2>
+            <form id="formProduto">
+                <div class="campos">
+                    <div>
+                        <label for="codigo">Código</label>
+                        <input type="number" id="codigo" min="1" step="1" required>
+                    </div>
+                    <div>
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    <div>
+                        <label for="preco">Preço</label>
+                        <input type="number" id="preco" min="0" step="0.01" required>
+                    </div>
+                    <div>
+                        <label for="quantidade">Quantidade</label>
+                        <input type="number" id="quantidade" min="0" step="1" required>
+                    </div>
+                    <div>
+                        <label for="categoria">Categoria</label>
+                        <select id="categoria" required>
+                            <option value="">Selecione</option>
+                            <option>Periférico</option>
+                            <option>Monitor</option>
+                            <option>Computador</option>
+                            <option>Outros</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="botoes">
+                    <button type="submit" id="salvar">
+                        Cadastrar Produto
+                    </button>
+                    <button type="reset" id="cancelar">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+            <p id="mensagem" role="status" aria-live="polite"></p>
+        </section>
+        <section class="produtos">
+            <h2>Produtos Cadastrados</h2>
+            <input type="search" id="pesquisa" placeholder="Pesquisar produto...">
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Qtd.</th>
+                            <th>Categoria</th>
+                            <th>Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaProdutos"></tbody>
+                </table>
+            </div>
+            <div class="resumo">
+                <p>Produtos: <strong id="totalProdutos">0</strong></p>
+                <p>Estoque: <strong id="valorEstoque">R$ 0,00</strong></p>
+            </div>
+        </section>
+    </main>
+    <script src="scriptstorage.js" defer></script>
+</body>
+</html>
+
+Script
+// ARRAY DE OBJETOS
+let produtos = [
+    {
+        codigo: 101,
+        nome: "Mouse",
+        preco: 50,
+        quantidade: 10,
+        categoria: "Periférico"
+    },
+    {
+        codigo: 102,
+        nome: "Teclado",
+        preco: 80,
+        quantidade: 5,
+        categoria: "Periférico"
+    }
+];
+const formulario = _________________________;
+const lista = _________________________;
+const pesquisa = _________________________;
+let codigoEdicao = null;
+
+// FORMATAR MOEDA
+function moeda(valor) {
+    return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+// LISTAR PRODUTOS
+function listarProdutos(dados = produtos) {
+    lista.replaceChildren();
+    dados.forEach(produto => {
+        const linha = document.createElement("tr");
+        const valores = [
+            produto.codigo,
+            produto.nome,
+            moeda(produto.preco),
+            produto.quantidade,
+            produto.categoria,
+            moeda(produto.preco * produto.quantidade)
+        ];
+        valores.forEach(valor => {
+            const celula = document.createElement("td");
+            celula.textContent = valor;
+            linha.append(celula);
+        });
+        const acoes = document.createElement("td");
+        const editar = document.createElement("button");
+        editar.textContent = "Editar";
+        editar.className = "btn-editar";
+        editar.addEventListener("click", () => {
+            editarProduto(produto.codigo);
+        });
+        const excluir = document.createElement("button");
+        excluir.textContent = "Excluir";
+        excluir.className = "btn-excluir";
+        excluir.addEventListener("click", () => {
+            excluirProduto(produto.codigo);
+        });
+        acoes.append(editar, excluir);
+        linha.append(acoes);
+        lista.append(linha);
+    });
+    calcularEstoque();
+}
+
+// CADASTRAR OU ATUALIZAR
+formulario.addEventListener("submit", evento => {
+    evento.preventDefault();
+
+    const codigo = Number(document.querySelector("#codigo").value);
+    const nome = document.querySelector("#nome").value.trim();
+    const preco = Number(document.querySelector("#preco").value);
+    const quantidade = Number(document.querySelector("#quantidade").value);
+    const categoria = document.querySelector("#categoria").value;
+
+    if (
+        !Number.isInteger(codigo) || codigo <= 0 ||
+        !nome || !categoria ||
+        !Number.isFinite(preco) || preco < 0 ||
+        !Number.isInteger(quantidade) || quantidade < 0
+    ) {
+        alert("Informe dados válidos.");
+  &n

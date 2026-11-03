@@ -1,0 +1,18 @@
+body {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 14px;
+}
+
+h1 {
+    color: #2396e2;
+    border: solid 1px #ccc;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.container {
+    padding: 10px;
+    background-color: #f7f5f5;
+}
+

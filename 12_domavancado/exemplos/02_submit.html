@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 3 - Enviando Formulários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="01_valores.html">Valores</a>
+        <a href="02_captura.html">Captura</a>
+        <a href="02_submit.html">Submite</a>
+        <a href="03_lista.html">Lista 1</a>
+        <a href="04_lista.html">Lista valida</a>
+        <a href="05_crud.html">Crud</a>
+        <a href="06_storage.html">Storage</a>
+    
+    </nav>
+    <main class="container-formulario">
+        <h2>Enviando Formulários</h2>
+        <form id="formulario">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="exemplo@email.com" required>
+            <button type="submit" id="enviar">
+                Enviar Formulário
+            </button>
+        </form>
+        <p id="mensagem" aria-live="polite"></p>
+    </main>
+    <script>
+        // 1. SELECIONAR ELEMENTOS
+        const formulario = document.querySelector("#formulario");
+        const campoNome = document.querySelector("#nome");
+        const campoEmail = document.querySelector("#email");
+        const mensagem = document.querySelector("#mensagem");
+        // 2. CAPTURAR O ENVIO
+        formulario.addEventListener("submit", (evento) => {
+            // 3. IMPEDIR O RECARREGAMENTO
+            evento.preventDefault();
+            // 4. CAPTURAR OS VALORES
+            const nome = campoNome.value.trim();
+            const email = campoEmail.value.trim();
+            // 5. APRESENTAR CONFIRMAÇÃO
+            mensagem.textContent =
+                "Formulário enviado com sucesso! " +
+                "Obrigado, " + nome +
+                "! Seu e-mail é: " + email;
+            // 6. LIMPAR OS CAMPOS
+            formulario.reset();
+            // 7. VOLTAR O FOCO PARA O NOME
+            campoNome.focus();
+        });
+    </script>
+</body>
+</html>

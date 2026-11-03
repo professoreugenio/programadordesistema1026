@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Captura de Dados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="01_valores.html" class="active">Valores</a>
+        <a href="02_captura.html">Captura</a>
+        <a href="02_submit.html">Submite</a>
+        <a href="03_lista.html">Lista 1</a>
+        <a href="04_lista.html">Lista valida</a>
+        <a href="05_crud.html">Crud</a>
+        <a href="06_storage.html">Storage</a>
+
+    </nav>
+
+    <label for="nome">Nome</label>
+    <input type="text" id="nome">
+    <button type="button" id="mostrar">
+        Mostrar
+    </button>
+    <p id="resultado"></p>
+    <script>
+        const nome = document.querySelector("#nome");
+        const botao = document.querySelector("#mostrar");
+        const resultado = document.querySelector("#resultado");
+        botao.addEventListener("click", () => {
+            resultado.textContent = nome.value;
+        });
+    </script>
+</body>
+
+</html>
