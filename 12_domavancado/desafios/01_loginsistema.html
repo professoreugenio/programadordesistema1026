@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login do Sistema</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f2f5;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        #resposta {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h1 class=""></h1>
+        <h3 class="text-center mb-4">
+            Acesso ao Sistema
+        </h3>
+
+        <form id="formLogin">
+
+            <div class="mb-3">
+                <label for="login" class="form-label">
+                    Login
+                </label>
+                <input type="text" class="form-control" id="login" name="login" placeholder="Digite seu login"
+                    autocomplete="username">
+            </div>
+
+            <div class="mb-3">
+                <label for="senha" class="form-label">
+                    Senha
+                </label>
+                <div id="resposta"></div>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha"
+                    autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Logar
+            </button>
+
+        </form>
+    </div>
+
+    <script>
+        const formulario = document.querySelector("#formLogin");
+        const resposta = document.querySelector("#resposta")
+
+
+        formulario.addEventListener("submit", (evento) => {
+            evento.preventDefault()
+
+            const campologin = document.querySelector("#login");
+            const camposenha = document.querySelector("#senha");
+
+            const login = campologin.value.trim();
+            const senha = camposenha.value.trim();
+
+            let loginusuario = "admin@admin"
+            let senhausuario = "123456789"
+
+            if (senha.length < 5) {
+                resposta.textContent = "Tamanho mínimo 5 dígitos 😁";
+                setTimeout(() => {
+                    resposta.textContent = "";
+                }, 3000)
+                return
+            }
+
+            if (senha === "") {
+                alert("Senha não pode ser vazia 😂")
+                return
+            }
+
+            if (login === loginusuario && senha === senhausuario) {
+
+                alert("Acesso liberado");
+                window.open("01_sistema.html")
+            } else {
+
+                alert("Dados não conferem")
+            }
+
+
+
+
+        })
+
+
+
+
+    </script>
+
+</body>
+
+</html>
