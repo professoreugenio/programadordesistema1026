@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" id="form">
+        <div class="group">
+            <input type="text" name="" id="valor1">
+            <input type="text" name="" id="valor2">
+            <button id="somar" type="submit">Somar</button>
+            <button id="limpar" type="submit">Limpar</button>
+            <div id="resultado"></div>
+        </div>
+
+    </form>
+
+    <script>
+        const resultado = document.querySelector("#resultado")
+        const botaosomar = document.querySelector("#somar")
+        const formulario = document.querySelector("#form");
+        const btlimpar = document.querySelector("#limpar");
+
+
+        formulario.addEventListener("submit", (evento) => {
+            evento.preventDefault();
+
+            const valor1 = document.querySelector("#valor1")
+            const valor2 = document.querySelector("#valor2")
+            if (valor1.value === "" || valor2.value === "") {
+
+                resultado.textContent = "Campos sem valores";
+                return
+            }
+
+            const soma = Number(valor1.value) + Number(valor2.value)
+            resultado.textContent = `Valor1: R$ ${valor1.value} + Valor2: R$${valor2.value} = R$ ${soma} `;
+
+
+
+            valor1.value = "";
+            valor2.value = "";
+            valor1.focus()
+
+        })
+
+        btlimpar.addEventListener("click", () => {
+            valor1.value = "";
+            valor2.value = "";
+            valor1.focus()
+        })
+    </script>
+</body>
+
+</html>

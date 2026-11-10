@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="caixa">Minha caixa</div>
+    <button id="alterar">Alterar</button>
+    <script>
+const caixa = document.querySelector("#caixa")
+const botao = document.querySelector("#alterar")
+
+botao.addEventListener("click",()=>{
+    caixa.style.backgroundColor = "red"
+    caixa.style.padding = "20px"
+    caixa.style.margin = "20px"
+    caixa.style.textAlign = "center"
+    caixa.style.color="white"
+})
+    </script>
+
+</body>
+
+</html>
