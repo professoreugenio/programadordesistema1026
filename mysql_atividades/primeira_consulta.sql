@@ -1,3 +1,3 @@
 SELECT VERSION();
 SHOW DATABASES;
-SHOW TABLES;
+select database();
