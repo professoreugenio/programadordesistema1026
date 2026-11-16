@@ -1,0 +1,13 @@
+use escola_bd;
+use agenda_bd;
+rename table estudantes to alunos_tb;
+describe alunos_tb;
+describe contatos;
+show tables;
+ALTER TABLE alunos_tb RENAME column nome TO nome_aluno;
+ALTER TABLE alunos_tb RENAME column rg TO rg_aluno;
+ALTER TABLE alunos_tb RENAME column cpf TO cpf_aluno;
+alter table contatos add constraint unk_agenda_contato UNIQUE(email);
+alter table contatos add constraint uniq_contato_cpf UNIQUE(cpf);
+alter table contatos add column cpf VARCHAR(11) NOT NULL;
+alter table contatos add column rg VARCHAR(11) NOT NULL;
